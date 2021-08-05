@@ -1,0 +1,20 @@
+@mixin left-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  @content;
+}
+.container{
+  width: 100px;
+  height: 100px;
+  @include left-top;
+}
+.box  {
+  width: 200px;
+  height: 300px;
+  @include left-top{//content 있는부분에 다가 {} 요거 삽입
+    bottom: 0;
+    right: 0;
+    margin: auto;
+  }
+}

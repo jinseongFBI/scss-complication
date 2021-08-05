@@ -1,0 +1,185 @@
+// @import url(/sub.scss); //가져오기
+// @import "/sub.scss","/sub2.scss" //가져오기
+
+$color:royalblue;
+.container{
+  h1{
+    color: $color;
+    // background-color: orange;//주석 css에서는 안들어감
+    // font-size: 60px;/*주석 css에서는 들어감*/ 
+    
+  }
+}
+
+// 중첩
+// .container{
+//   > ul{ // '>'자식선택자
+//     li{
+//       font-size: 40px;
+//       .name{
+//         color:royalblue;
+//       }
+//       .age{
+//         color:orange;
+//       }
+//     }
+//   }
+// }
+
+
+// & 상위 선택자 참조
+// .btn{
+//   position:absolute;
+//   &.active{
+//     color:red;
+//   }
+// }
+// .list{
+//   li{
+//     &:last-child{
+//       margin-right: 0%;
+//     }
+//   }
+// }
+// .fs{
+//   &-small{ font-size: 12px;}
+//   &-medium{ font-size: 14px;}
+//   &-large{ font-size: 16px;}
+// }
+
+// 중첩된 속성
+// .box{
+//   font: {
+//     weight:bold;
+//     size:10px;
+//     family:sans-serif;
+//     //예 font- /네임스페이스:이름을 통해 가능한 범위를 만들어내는 것으로 
+//     //일종의 유효범위를 지정하는 방법
+//   };
+//   margin: {
+//     top:10px;
+//     left:20px;
+//   };
+//   padding: {
+//     top:10px;
+//     bottom:40px;
+//     left:20px;
+//     right:30px;
+//   };
+// }
+
+// 변수
+// $size:100px;//전역변수
+// .container  {//지역변수 지역안에서 만 유효한 범위
+//   $size2:200px;
+//   position: fixed;
+//   top:$size2;
+//   .item {
+//     $size2:100px;
+//     width: $size;
+//     height: $size2;//재할당 가능
+//     transform: translateX($size);
+//   }
+//   left:$size2;
+// }
+// .box{
+//   width:$size;
+// }
+
+// 산술연산
+// div{
+//   $size:30px;
+//   width: 20px + 20px;
+//   height: 40px  - 10px;
+//   font-size: 10px * 2;
+//   margin: 30px / 2 ;//연산되지 않은 그대로 보임()묶어야
+//   // margin: (30px / 2) ;//연산되지 않은 그대로 보임()묶어야또는 변수로
+//   // margin: $size / 2 ;//연산되지 않은 그대로 보임()묶어야또는 변수로
+//   padding:  20px % 7 ;
+// }
+// span{
+//   font-size:  10px;
+//   line-height: 10px;
+//   font-family: serif;
+//   font: 10px /  10px  serif;//font failmly 명시해줘야함 폰트는
+// }
+
+// div{
+//   // width: 100%-200px;// 단위가 같아야 함=>calc 함수는 가능
+//   width:calc(100%-200px)
+// }
+// .box{
+//   background-color: royalblue;
+//   width: calc(100%-200px);
+//   height: 100px;
+// }
+
+// 재활용
+// @mixin center {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
+// @mixin box($size:100px,$color:tomato) {//매개변수 ,/사이즈의 기본값 100px
+//   width: $size;
+//   height: $size;
+//   background-color: $color;
+// }
+// .container{
+//   @include box(200px,red);//인수
+//   .item{
+//     @include box($color:green);//인수와 매개변수으의 순서를 맞추어야=>키워드 인수면 상관없어
+//   }
+// }
+// .box{
+//   @include box;
+// }
+ 
+
+// 반복문_js
+// for(let i=0;i<10;i+=1){
+//   console.log(`loop-${i}`)
+// }
+//반복문_scss
+// @for $i from 1 through 10{//총 10번
+//   .box:nth-child(#{$i}){//문자를 보관 하는 방식 보간 #{}
+//     width: 100px * $i;
+//   }
+// }
+
+
+// 함수
+// @mixin center{
+//   display: flex;
+//   justify-items: center;
+//   align-items: center;
+// }
+// @function ratio($size,$ratio){
+//   @return $size * $ratio
+// }
+// .box  {
+//   $width:100px;
+//   width: $width;
+//   height: ratio($width,9/16 );
+//   @include center;
+// }
+
+// 색상내장함수
+// .box{
+//   $color:royalblue;
+//   width: 200px;
+//   height: 100px;
+//   margin: 20px;
+//   border-radius: 10px;
+//   background-color: $color;
+//   &:hover{
+//     background-color: darken($color,10%);
+//   }
+//   &.built-in{
+//     // background-color: saturate($color,40%);//채도올림
+//     background-color: desaturate($color,40%);//채도 내림
+//     background-color: grayscale($color);//회색으로 만듬(2번쨰인수x)
+//     background-color: invert($color);//색상반전
+//     background-color: rgba($color,5);//1.색상추가 /2.투명도추가
+//   }
+// }
